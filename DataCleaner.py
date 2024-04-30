@@ -1,5 +1,9 @@
 import pandas as pd
-df = pd.read_excel("rosetta melb plu week 4.xls")
+import os
+
+file_path = r"C:\Users\cmclaren\Desktop\Coding Projects\WeeklyPLUDataCleaning\ToClean\rosetta melb plu week 4.xls"
+
+df = pd.read_excel(file_path)
 
 # Create an empty dictionary to store category mappings
 category_mapping = {}
@@ -74,7 +78,7 @@ df = df.rename(columns={
     'Avg Price\nInc TAX': 'Description',
     'Value Sold\nInc TAX': 'Unit Cost EX TAX',
     'TAX on\nSales': 'Avg Price inc TAX',
-    'Exp. COS\nEx-TAX' : 'Qty Sold',
+    'Exp. COS\n Ex-TAX' : 'Qty Sold',
     'Profit\nEx-TAX' : 'Value Sold',
     'Profit %\nEx-TAX' : 'TAX on Sales',
     'PLU' : 'EXP. COS Ex-TAX',
@@ -82,6 +86,9 @@ df = df.rename(columns={
     'Qty Sold' : 'Profit % Ex-Tax'
 })
 
-df.to_excel("test.xlsx", index=False)
+# Specify the directory path
+directory_path = r"C:\Users\cmclaren\Desktop\Coding Projects\WeeklyPLUDataCleaning\cleanedReports"
+file_path = os.path.join(directory_path, "cleaned_report.xlsx")
+df.to_excel(file_path, index=False)
 
 print("DataFrame saved to test.xlsx")
