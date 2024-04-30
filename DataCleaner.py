@@ -23,6 +23,13 @@ df['Category'] = df['Category'].fillna(method='ffill')
 
 print(df)
 
+# Move 'Category' column to column C
+category_column = df.pop('Category')
+df.insert(2, 'Category', category_column)
+
+# Filter out rows where 'Qty Sold' is NaN or 0
+df = df[(df['Qty Sold'].notna()) & (df['Qty Sold'] != 0)]
+
 df.to_excel("test.xlsx", index=False)
 
 print("DataFrame saved to test.xlsx")
